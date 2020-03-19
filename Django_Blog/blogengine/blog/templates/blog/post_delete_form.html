@@ -1,0 +1,43 @@
+{%extends 'blog/base_blog.html'%}
+
+
+{% block title%}
+ Delete Post "{{post.title|title}}" - {{block.super}}
+{%endblock%}
+
+{%block content%}
+
+<form action="{{post.get_delete_url}}" method="post">
+    {%csrf_token%}
+    
+    <p>Are you shure you want to delete <b>"{{post.title|title}}"</b></p>
+    <style>
+        p  {
+            color: brown;
+            font-size: 40px;
+            text-align: center !important;
+            
+        }
+        button {
+            margin-top: 60px;
+            margin-left: 60px;
+        }
+        .prev {
+            background: cornflowerblue;
+            padding: 10px;
+            color: white;
+            
+        }
+        .pagination {
+            display: none !important;
+        }
+        
+    </style>
+ 
+ <a href="{{ post.get_absolute_url }} " class="prev">Cancel</a>
+
+    <button type="submit" name = "button" class="btn btn-danger">Delete</button>
+    
+</form>
+
+{%endblock%}

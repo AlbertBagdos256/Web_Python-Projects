@@ -1,0 +1,42 @@
+{%extends 'blog/base_blog.html'%}
+
+
+{% block title%}
+ Delete Tag "{{tag.title|title}}" - {{block.super}}
+{%endblock%}
+
+{%block content%}
+
+<form action="{{tag.get_delete_url}}" method="post">
+    {%csrf_token%}
+    
+    <p>Are you shure you want to delete <b>"{{tag.title|title}}"</b></p>
+    <style>
+        p  {
+            color: brown;
+            font-size: 40px;
+            text-align: center !important;
+            
+        }
+        button {
+            margin-top: 60px;
+            margin-left: 60px;
+        }
+        .prev {
+            background: cornflowerblue;
+            padding: 10px;
+            color: white;
+            
+        }
+        .pagination {
+            display: none !important;
+        }
+    </style>
+ 
+ <a href="{{ tag.get_absolute_url}} " class="prev">Cancel</a>
+
+    <button type="submit" name = "button" class="btn btn-danger">Delete</button>
+    
+</form>
+
+{%endblock%}
